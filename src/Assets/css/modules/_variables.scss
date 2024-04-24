@@ -1,0 +1,42 @@
+:root {
+    --primary: #C7DC39;
+    --hover: #F1FF94;
+    --head: #202020;
+    --bg: #2E2E2E;
+    --gray: #6C706F;
+    --stroke: #898989;
+    --text: #F5F5F5;
+    --card: #FFFFFF;
+    
+    // MODAL BG
+    --modal-bg: #001020;
+    --modal-opacity: 0.8;
+
+    // HEDER
+    --header-h: 100px; // изменяться автоматически через JS
+
+    // BORDER RADIUS
+    --br: 10px;
+
+    // FONT
+    --font: 'Inter', sans-serif;
+
+    /* Title */
+    --h1: 600 clamp(30px, calc(30px + 40 * (100vw - 320px) / 1600), 70px)/110% var(--font);
+    --h2: 400 clamp(26px, calc(26px + 14 * (100vw - 320px) / 1600), 40px)/120% var(--font);
+    --h3: 600 clamp(20px, calc(20px + 12 * (100vw - 320px) / 1600), 32px)/150% var(--font);
+    --h4: 600 clamp(18px, calc(18px + 10 * (100vw - 320px) / 1600), 28px)/150% var(--font);
+    --h5: 600 clamp(16px, calc(16px + 8 * (100vw - 320px) / 1600), 24px)/150% var(--font);
+    --h6: 800 clamp(14px, calc(14px + 6 * (100vw - 320px) / 1600), 20px)/150% var(--font);
+    --h7: 600 clamp(12px, calc(12px + 4 * (100vw - 320px) / 1600), 16px)/150% var(--font);
+
+    /* Desc */
+    --p1: 400 clamp(18px, calc(18px + 6 * (100vw - 320px) / 1600), 24px)/150% var(--font);
+    --p2: 400 clamp(16px, calc(16px + 4 * (100vw - 320px) / 1600), 20px)/150% var(--font);
+    --p3: 400 clamp(14px, calc(14px + 2 * (100vw - 320px) / 1600), 16px)/150% var(--font);
+    --p4: 400 clamp(12px, calc(12px + 2 * (100vw - 320px) / 1600), 14px)/140% var(--font);
+
+
+    --desc: 400 12px/150% var(--font);
+    --btn: 600 16px/150% var(--font);
+}

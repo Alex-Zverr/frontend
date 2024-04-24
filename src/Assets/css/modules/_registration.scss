@@ -1,0 +1,27 @@
+.registration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70dvh;
+
+    &__holder {
+        margin: 30px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 500px;
+        background-color: var(--bg);
+        padding: 40px 30px;
+        border-radius: 20px;
+    }
+    &__title {
+        font: var(--h3);
+        color: var(--card);
+        text-align: center;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

@@ -1,0 +1,115 @@
+main {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-top: 0.9em;
+        margin-bottom: 0.6em;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    h1 {
+        font: var(--h1);
+    }
+    h2 {
+        font: var(--h2);
+    }
+    h3 {
+        font: var(--h3);
+    }
+    h4 {
+        font: var(--h4);
+    }
+    h5 {
+        font: var(--h5);
+    }
+    h6 {
+        font: var(--h6);
+    }
+    strong {
+        font-weight: 800;
+    }
+    p,
+    li {
+        margin-bottom: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    li {
+        margin-bottom: 7px;
+    }
+
+    ul {
+        padding-left: 0px;
+        margin-bottom: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+        li {
+            background: transparent;
+            box-shadow: none;
+            height: auto;
+            width: 100%;
+            padding: 0px;
+            margin-right: 0px;
+            list-style: none;
+            display: flex;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+            &::before {
+                content: "";
+                flex-shrink: 0;
+                background: var(--primary);
+                width: 0.5em;
+                height: 0.5em;
+                margin-top: 0.5em;
+                margin-right: 0.5em;
+                border-radius: 50%;
+                line-height: inherit;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+    ol {
+        margin-bottom: 15px;
+        padding-left: 15px;
+        counter-reset: my-awesome-counter;
+        padding-left: 0px;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+        li {
+            counter-increment: my-awesome-counter;
+            background: transparent;
+            box-shadow: none;
+            height: auto;
+            width: 100%;
+            list-style: none;
+            display: flex;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+            &::before {
+                flex-shrink: 0;
+                content: counter(my-awesome-counter)'.';
+                display: block;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+        }
+    }
+}

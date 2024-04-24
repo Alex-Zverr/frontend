@@ -1,0 +1,22 @@
+.header {
+    padding: 15px;
+    background-color: var(--bg);
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+    }
+    &__logo {
+        width: 60px;
+        height: 60px;
+    }
+    &__nav {
+        display: flex;
+        gap: 20px;
+    }
+    &__link {
+        font: var(--p2);
+    }
+}

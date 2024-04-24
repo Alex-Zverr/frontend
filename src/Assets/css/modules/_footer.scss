@@ -1,0 +1,9 @@
+.footer {
+    padding: 40px 0;
+    background-color: var(--bg);
+    height: 200px;
+
+    &__copy {
+        font: var(--p1);
+    }
+}
