@@ -1,14 +1,27 @@
 import { SubmitHandler, useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 import FormInput from "../Components/FormInput"
+import { getUsers } from "../Services/auth.services"
+import { useQuery } from "@tanstack/react-query"
 
 interface ILogin {
     login: string,
     password: string 
 }
 
-
 const Login = () => {
+    const { isPending, error, data } = useQuery({
+        queryKey: ['users'],
+        queryFn: getUsers
+    })
+    
+    if (isPending) {
+        <div>Loading...</div>
+    }
+    
+    console.log(data);
+    console.log(error);
+
     const { 
         register, 
         handleSubmit,
