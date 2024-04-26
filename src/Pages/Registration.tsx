@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "../Components/FormInput"
-import { IUser } from "../Interface/user";
+import { IRegisterUser } from "../Interface/user";
 import { registerUser } from "../Services/auth.services";
 
 const Registration = () => {
@@ -8,14 +8,19 @@ const Registration = () => {
         register, 
         handleSubmit,
         reset,
+        getValues,
         formState: { errors } 
-    } = useForm<IUser>({
+    } = useForm<IRegisterUser>({
         mode: 'onBlur',
     })
 
-    const onSubmit: SubmitHandler<IUser> = async data => {
+    const onSubmit: SubmitHandler<IRegisterUser> = async data => {
+        delete data.confirmPassword;
+        
         let user = await registerUser(data);
+
         console.log(user);
+        
         
         reset();
     }
@@ -32,13 +37,13 @@ const Registration = () => {
                         <FormInput 
                             errors={errors} 
                             register={register}
-                            name="login"
+                            name="username"
                             placeholder="Логин"
                             type="text"
                             params={{
                                 required: "Поле обязательно для заполнения",
                                 minLength: {
-                                    value: 5,
+                                    value: 3,
                                     message: "Минимальная длина логина 5 символов"
                                 }
                             }}
@@ -51,6 +56,10 @@ const Registration = () => {
                             type="text"
                             params={{
                                 required: "Поле обязательно для заполнения",
+                                pattern: {
+                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 
+                                    message: "Пользовательская почта введена некорректно"
+                                }
                             }}
                         />
                         <FormInput 
@@ -66,11 +75,18 @@ const Registration = () => {
                         <FormInput 
                             errors={errors} 
                             register={register}
-                            name="repeatPassword"
+                            name="confirmPassword"
                             placeholder="Повторите пароль"
                             type="password"
                             params={{
                                 required: "Поле обязательно для заполнения",
+                                validate: (val: string) => {
+                                    if (val !== getValues("password")) {
+                                        return "Пароли не совпадают";
+                                    } else {
+                                        return true;
+                                    }
+                                }
                             }}
                         />
                         <button className="registration__btn btn">Зарегистрироваться</button>
