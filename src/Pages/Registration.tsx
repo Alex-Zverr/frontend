@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "../Components/FormInput"
 import { IUser } from "../Interface/user";
+import { registerUser } from "../Services/auth.services";
 
 const Registration = () => {
     const { 
@@ -12,8 +13,10 @@ const Registration = () => {
         mode: 'onBlur',
     })
 
-    const onSubmit: SubmitHandler<IUser> = data => {
-        console.log(data);
+    const onSubmit: SubmitHandler<IUser> = async data => {
+        let user = await registerUser(data);
+        console.log(user);
+        
         reset();
     }
 
@@ -45,7 +48,7 @@ const Registration = () => {
                             register={register}
                             name="email"
                             placeholder="email"
-                            type="email"
+                            type="text"
                             params={{
                                 required: "Поле обязательно для заполнения",
                             }}
@@ -60,7 +63,7 @@ const Registration = () => {
                                 required: "Поле обязательно для заполнения",
                             }}
                         />
-                                                <FormInput 
+                        <FormInput 
                             errors={errors} 
                             register={register}
                             name="repeatPassword"
