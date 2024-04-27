@@ -1,11 +1,10 @@
 import { SubmitHandler, useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 import FormInput from "../Components/FormInput"
+import { ILogin } from "../Interface/auth"
+import { useMutation } from "@tanstack/react-query"
+import { loginUser } from "../Services/auth.services"
 
-interface ILogin {
-    login: string,
-    password: string 
-}
 
 const Login = () => {
     const { 
@@ -15,15 +14,20 @@ const Login = () => {
         formState: { errors } 
     } = useForm<ILogin>({
         mode: 'onBlur',
-        defaultValues: {
-            login: '',
-            password: ''
-        }
     })
 
-    const onSubmit: SubmitHandler<ILogin> = data => {
-        console.log(data);
-        reset();
+    const { mutate, isSuccess, data } = useMutation({
+        mutationFn: async (data: ILogin) => await loginUser(data),
+    })
+
+    const onSubmit: SubmitHandler<ILogin> = loginData => {
+        mutate(loginData);
+
+        if(isSuccess) {
+            console.log(data);
+            reset();
+        }
+
     }
 
     return (
@@ -38,14 +42,14 @@ const Login = () => {
                         <FormInput 
                             errors={errors} 
                             register={register}
-                            name="login"
+                            name="username"
                             placeholder="Логин"
                             type="text"
                             params={{
                                 required: "Поле обязательно для заполнения",
                                 minLength: {
-                                    value: 5,
-                                    message: "Минимальная длина логина 5 символов"
+                                    value: 3,
+                                    message: "Минимальная длина логина 3 символов"
                                 }
                             }}
                         />

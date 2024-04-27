@@ -2,8 +2,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "../Components/FormInput"
 import { IRegisterUser } from "../Interface/user";
 import { registerUser } from "../Services/auth.services";
+import { useMutation } from "@tanstack/react-query";
 
 const Registration = () => {
+
+    const {mutate, data, isSuccess} = useMutation({
+        mutationFn: async (data: IRegisterUser) => await registerUser(data),
+    })
+
     const { 
         register, 
         handleSubmit,
@@ -14,12 +20,14 @@ const Registration = () => {
         mode: 'onBlur',
     })
 
-    const onSubmit: SubmitHandler<IRegisterUser> = async data => {
-        delete data.confirmPassword;
-        
-        let user = await registerUser(data);
+    const onSubmit: SubmitHandler<IRegisterUser> = async newUserData => {
+        delete newUserData.confirmPassword;
+    
+        mutate(newUserData);
 
-        console.log(user);
+        if(isSuccess){
+            console.log(data);
+        }
         
         
         reset();
@@ -44,7 +52,7 @@ const Registration = () => {
                                 required: "Поле обязательно для заполнения",
                                 minLength: {
                                     value: 3,
-                                    message: "Минимальная длина логина 5 символов"
+                                    message: "Минимальная длина логина 3 символов"
                                 }
                             }}
                         />
