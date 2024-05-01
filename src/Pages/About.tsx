@@ -3,7 +3,7 @@ import App from "../Components/App"
 import { getUsers } from "../Services/auth.services"
 
 const About = () => {
-    const { data, isSuccess, isError } = useQuery({
+    const { data, isSuccess } = useQuery({
         queryKey: ['users'],
         queryFn: () => getUsers()
     })
