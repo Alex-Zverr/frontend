@@ -11,5 +11,5 @@ export const registerUser = async (user: IUserBase) => {
 }
 
 export const loginUser = async (user: ILogin) => {
-    return (await axiosInstance.post<IUser>('/auth/login', user)).data
+    return (await axiosInstance.post<IUser>('/auth/token', user)).data
 }
