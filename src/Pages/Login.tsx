@@ -25,6 +25,7 @@ const Login = () => {
 
         if(isSuccess) {
             console.log(data);
+            localStorage.setItem('AccessToken', `${data.token_type} ${data.access_token}`);
             reset();
         }
 

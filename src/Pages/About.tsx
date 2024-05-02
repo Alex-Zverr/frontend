@@ -17,7 +17,13 @@ const About = () => {
             <h1>О нас</h1>
             <App />
             <div>Получит пользователей</div>
-            <div></div>
+            <div>
+                {isSuccess ? data?.map((user) => (
+                    <div key={user.id}>{user.username}</div>
+                )) : (
+                    <div>Загрузка...</div>
+                )}
+            </div>
         </>
     )
 }
