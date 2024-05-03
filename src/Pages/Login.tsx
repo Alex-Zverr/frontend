@@ -26,8 +26,6 @@ const Login = () => {
 
     if(isSuccess) {
         localStorage.setItem('AccessToken', `${data.token_type} ${data.access_token}`);
-        console.log('redirect');
-        
         return <Navigate replace to="/" state={{ from: location }} />
     }
 
